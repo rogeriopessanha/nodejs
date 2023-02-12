@@ -34,7 +34,6 @@ app.get('/canal/youtube', function (req, res) {
         res.send('Nenhum canal encontrado')
     }
     
-
     // res.send('<h1>Bem-vindo ao meu canal do youtube</h1>')
 })
 
@@ -43,8 +42,6 @@ app.get('/ola/:nome/:empresa', function (req, res) {
     var empresa = req.params.empresa
     res.send('<h1>Olá ' + nome  + ' do ' + empresa + ' </h1>')
 })
-
-
 
 app.listen(4000, function (erro) {
     if (erro) {
