@@ -33,7 +33,6 @@ app.get('/canal/youtube', function (req, res) {
     }else{
         res.send('Nenhum canal encontrado')
     }
-    
     // res.send('<h1>Bem-vindo ao meu canal do youtube</h1>')
 })
 
