@@ -1,5 +1,5 @@
 
-function enviarEmail(corpo, para) {
+function enviarEmail(corpo, para, callback) {
     setTimeout(() => {
         console.log(`
         Para: ${para}
@@ -8,7 +8,18 @@ function enviarEmail(corpo, para) {
         ----------------------
         De: Rogerio Pessanha
         `)
-    },8000)
+        callback('ok', 10, '5s')
+    },3000)
 }
 
-enviarEmail('Ola, seja bem-vindo(a)', 'rogerio@dev.com')
+console.log('Inicio do envio do e-mail...')
+enviarEmail('Ola, seja bem-vindo(a)', 'rogerio@dev.com', (status, amount, time) => {
+    console.log(`
+    Status: ${status}
+    ----------------------
+    Contatos: ${amount}
+    ----------------------
+    Tempo de envio: ${time}
+    `)
+    console.log('TUDO OK.')
+})
