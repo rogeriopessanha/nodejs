@@ -8,9 +8,16 @@
 </head>
 <body>
     <form method="post" action="/form">
-        <input type="text" name="nome" id="nome" placeholder="Nome"> <br>
-        <input type="email" name="email" id="email" placeholder="E-mail" required> <br>
-        <input type="number" name="pontos" id="pontos" placeholder="pontos"> <br>
+
+        <input type="text" name="nome" id="nome" placeholder="Nome" value="<%= nome %>"> <br>
+        <%= nomeError %> <br>
+
+        <input type="email" name="email" id="email" placeholder="E-mail" value="<%= email %>"> <br>
+        <%= emailError %> <br>
+
+        <input type="number" name="pontos" id="pontos" placeholder="pontos" value="<%= pontos %>"> <br>
+        <%= pontosError %> <br>
+
         <button type="submit">Enviar</button>
     </form>
 </body>
