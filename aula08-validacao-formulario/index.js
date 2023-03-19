@@ -20,11 +20,36 @@ app.use(session({
 app.use(flash());
 
 app.get("/", (req, res) => {
-    console.log("FUNCIONANDO...")
-    res.send('RODANDO...')
+    res.render("index");
 })
 
+app.post("/form",(req, res) => {
+    var{nome, email, pontos} = req.body;
 
+    var nomeError;
+    var emailError;
+    var pontosError;
+
+    if (nome == undefined || "") {
+        nomeError = "O nome não pode ser vazio"
+    }
+
+    if (email == undefined || email == "") {
+        emailError = "O e-mail não pode ser vazio"
+    }
+
+    if (pontos == undefined || pontos < 20) {
+        nomeError = "Você não pode ter menos de 20 pontos"
+    }
+
+    if (emailError != undefined || pontosError != undefined || nomeError != undefined) {
+        
+    }
+
+    res.send(email)
+
+
+})
 
 app.listen(3000,(req, res) => {
     console.log('SERVIDOR RODANDO');
