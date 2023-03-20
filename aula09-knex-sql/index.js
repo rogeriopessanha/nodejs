@@ -110,3 +110,13 @@ var database = require("./database")
 //     console.log(erro)
 // })
 //-----------------------------------------
+
+
+// ORDERBY
+// database.select().table("games").orderBy("nome", "asc")
+// .then(data => {
+//     console.log(data)
+// })
+// .catch(erro => {
+//     console.log(erro)
+// })
