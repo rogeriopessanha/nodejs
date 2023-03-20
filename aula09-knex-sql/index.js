@@ -89,3 +89,24 @@ var database = require("./database")
 //     console.log(erro)
 // })
 //--------------------------------------------
+
+
+//DELETE
+// database.where({ id: 1 }).delete().table("games")
+// .then(data => {
+//     console.log(data)
+// })
+// .catch(erro => {
+//     console.log(erro)
+// })
+//------------------------------------------
+
+// UPDATE
+// database.where({ id: 2 }).update({preco: 20}).table("games")
+// .then(data => {
+//     console.log(data)
+// })
+// .catch(erro => {
+//     console.log(erro)
+// })
+//-----------------------------------------
