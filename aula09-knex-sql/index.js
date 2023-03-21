@@ -128,7 +128,7 @@ var database = require("./database")
 
 //INNER JOIN 1 PARA 1
 // database.select(["games.id", "estudios.id as estudio_id", "games.nome as game_nome", "estudios.nome as estudio_nome"]).table("games").innerJoin("estudios", "estudios.game_id", "games.id")
-//---------------------------------------------------------------
+
 //VERSÃO SIMPLIFICADA
 // database.select(["games.*", "estudios.nome as estudio_nome"]).table("games").innerJoin("estudios", "estudios.game_id", "games.id")
 // .then(data => {
@@ -140,24 +140,45 @@ var database = require("./database")
 //-----------------------------------------------------------------
 
 
-database.select(["games.*", "estudios.nome as estudio_nome"]).table("games").innerJoin("estudios", "estudios.game_id", "games.id").where("games.id",37)
-.then(data => {
-    var estudiosGamesArray = data
-    var game = {
-        id: 0,
-        nome: "",
-        estudios: []
-    }
+//INNER JOIN 1 PARA M
+// database.select(["games.*", "estudios.nome as estudio_nome"]).table("games").innerJoin("estudios", "estudios.game_id", "games.id").where("games.id",37)
+// .then(data => {
+//     var estudiosGamesArray = data
+//     var game = {
+//         id: 0,
+//         nome: "",
+//         estudios: []
+//     }
 
-    game.id = data[0].id;
-    game.nome = data[0].nome;
+//     game.id = data[0].id;
+//     game.nome = data[0].nome;
 
-    data.forEach(estudio => {
-        game.estudios.push({nome: estudio.estudio_nome})
+//     data.forEach(estudio => {
+//         game.estudios.push({nome: estudio.estudio_nome})
+//     })
+
+//     console.log(game)
+// })
+// .catch(erro => {
+//     console.log(erro)
+// })
+//------------------------------------------------------
+
+
+// INNER JOIN M PARA M
+database.select([
+    "estudios.nome as estudio_nome",
+    "games.nome as game_nome",
+    "games.preco"
+]).table("games_estudios")
+    .innerJoin("games", "games.id", "games_estudios.game_id")
+
+    .innerJoin("estudios", "estudios.id", "games_estudios.estudio_id")
+    // .where("games.id", 37)
+    // .where("estudios.id", 1)
+    .then(data => {
+        console.log(data)
     })
-
-    console.log(game)
-})
-.catch(erro => {
-    console.log(erro)
-})
+    .catch(erro => {
+        console.log(erro)
+    })
