@@ -184,7 +184,6 @@ var database = require("./database")
 //     })
 
 
-
 async function testeTransacao () {
 
     try{
@@ -198,5 +197,6 @@ async function testeTransacao () {
     }catch(erro){
         console.log(erro)
     }
-    
 }
+
+testeTransacao();
