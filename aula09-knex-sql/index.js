@@ -166,19 +166,37 @@ var database = require("./database")
 
 
 // INNER JOIN M PARA M
-database.select([
-    "estudios.nome as estudio_nome",
-    "games.nome as game_nome",
-    "games.preco"
-]).table("games_estudios")
-    .innerJoin("games", "games.id", "games_estudios.game_id")
+// database.select([
+//     "estudios.nome as estudio_nome",
+//     "games.nome as game_nome",
+//     "games.preco"
+// ]).table("games_estudios")
+//     .innerJoin("games", "games.id", "games_estudios.game_id")
 
-    .innerJoin("estudios", "estudios.id", "games_estudios.estudio_id")
-    // .where("games.id", 37)
-    // .where("estudios.id", 1)
-    .then(data => {
-        console.log(data)
-    })
-    .catch(erro => {
+//     .innerJoin("estudios", "estudios.id", "games_estudios.estudio_id")
+//     .where("games.id", 37)
+//     .where("estudios.id", 1)
+//     .then(data => {
+//         console.log(data)
+//     })
+//     .catch(erro => {
+//         console.log(erro)
+//     })
+
+
+
+async function testeTransacao () {
+
+    try{
+        await database.transaction(async trans => {
+           await database.insert({nome: "Rockstar Games"}).table("estudios")
+           await database.insert({nome: "Undead Labs"}).table("estudios")
+           await database.insert({nome: "The Coalition"}).table("estudios")
+           await database.insert({nome: "Bethesda"}).table("estudios")
+        })
+
+    }catch(erro){
         console.log(erro)
-    })
+    }
+    
+}
